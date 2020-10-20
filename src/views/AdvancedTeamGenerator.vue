@@ -18,11 +18,11 @@
   <div class="flex-row">
     <div class="flex-1">
       <label>Name</label>
-      <input v-model="player.name.val" type="text" />
+      <input v-model="player.name" type="text" />
     </div>
     <div style="flex: 0 0 100px">
       <label>Handicap</label>
-      <input v-model="player.handicap.val" type="number" />
+      <input v-model="player.handicap" type="number" />
     </div>
     <div style="flex: 0 0 150px; justify-content: flex-end">
       <input type="button" @click="addPlayer" value="Add player" />
@@ -47,30 +47,11 @@
     >
       <div class="flex-1">
         <div class="flex-row">
-          <input
-            v-if="player.name.editing"
-            style="flex: 0 0 47%"
-            type="text"
-            v-model="player.name.val"
-            @blur="player.name.editing = false"
-          />
-          <div
-            v-else
-            style="flex: 0 0 47%"
-          >
-            {{ player.name.val }}
+          <div style="flex: 0 0 47%">
+            {{ player.name }}
           </div>
-          <input
-            v-if="player.handicap.editing"
-            style="flex: 0 0 47%"
-            type="text"
-            v-model="player.handicap.val"
-            @blur="player.handicap.editing = false"
-          />
-          <div
-            style="flex: 0 0 47%"
-          >
-            {{ player.handicap.val }}
+          <div style="flex: 0 0 47%">
+            {{ player.handicap }}
           </div>
         </div>
       </div>
@@ -91,14 +72,8 @@ export default {
   data() {
     return {
       player: {
-        name: {
-          val: null,
-          editing: false
-        },
-        handicap: {
-          val: 0,
-          editing: false
-        }
+        name: null,
+        handicap: 0
       },
       players: [],
       size: 4,
@@ -140,13 +115,13 @@ export default {
   },
   methods: {
     addPlayer() {
-      if(this.player.name.val && this.player.handicap.val >= -50 && this.player.handicap.val <= 50) {
+      if(this.player.name && this.player.handicap >= -50 && this.player.handicap <= 50) {
         this.players.push({
           ...this.player
         });
-      } else if (!this.player.name.val) {
+      } else if (!this.player.name) {
         alert('Please provide a name');
-      } else if (this.player.handicap.val < -50 || this.player.handicap.val > 50) {
+      } else if (this.player.handicap < -50 || this.player.handicap > 50) {
         alert('Handicap should be between 50 and -50');
       }
     },

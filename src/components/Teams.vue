@@ -4,7 +4,7 @@
     <ul :class="['team', { 'warning': team.length <= 1 }]">
       <li v-for="(player, i) in team" :key="`player-${i}`">
         <template v-if="advanced">
-          {{ player.name.val }} <Badge :value="`${ player.handicap.val }`" color="dark" dark />
+          {{ player.name }} <Badge :value="`${ player.handicap }`" color="dark" dark />
         </template>
         <template v-else>
           {{ player }}
