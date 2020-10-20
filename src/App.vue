@@ -60,4 +60,84 @@ body {
   flex: 1 0 auto;
   padding: 50px;
 }
+
+.flex-row {
+  display: flex;
+  margin-bottom: 12px;
+  position: relative;
+}
+
+.flex-row:last-of-type {
+  margin-bottom: 0;
+}
+
+.flex-row > * {
+  display: flex;
+  flex-direction: column;
+  margin-right: 12px;
+  position: relative;
+}
+
+.flex-row > *:last-of-type {
+  margin-right: 0;
+}
+
+.flex-1 {
+  flex: 1 0 auto;
+}
+
+.flex-2 {
+  flex: 2 0 auto;
+}
+
+.flex-3 {
+  flex: 3 0 auto;
+}
+
+.flex-4 {
+  flex: 4 0 auto;
+}
+
+textarea,
+input[type="text"],
+input[type="number"],
+input[type="button"] {
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 15px;
+  transition: border-color .1s, background-color .1s, color .1s;
+}
+
+textarea:hover,
+input[type="text"]:hover,
+input[type="number"]:hover,
+input[type="button"]:hover {
+  border-color: #bbb;
+}
+
+textarea:focus,
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="button"]:focus {
+  border-color: #42b983;
+  outline-width: 0;
+  outline: none;
+  transition: border-color 0s, background-color 0s, color 0s;
+}
+
+input[type="button"] {
+  border-color: #eee;
+  cursor: pointer;
+}
+
+input[type="button"]:hover {
+  border-color: #42b983;
+  transition: border-color 0s, background-color 0s, color 0s;
+}
+
+input[type="button"]:active {
+  background-color: #42b983;
+  color: #fff;
+}
 </style>

@@ -32,22 +32,19 @@
     </div>
   </div>
   <h2>Output</h2>
-  <div v-for="(team, i) in teams" :key="`team-${i}`">
-    <h3>Team {{ i + 1 }}</h3>
-    <ul class="team">
-      <li v-for="(player, i) in team" :key="`player-${i}`">{{ player }}</li>
-    </ul>
-  </div>
+  <Teams :teams="teams" />
 </template>
 
 <script>
+import Teams from '@/components/Teams';
+
 export default {
+  components: { Teams },
   data() {
     return {
       players: null,
       size: 4,
-      teams: [],
-      testedTeams: []
+      teams: []
     };
   },
   computed: {
@@ -96,7 +93,6 @@ export default {
       if (this.teams[index].length !== this.teamSize) {
         if (this.teams[index].length < this.perTeamMaximum) {
           this.teams[index].push(player);
-
           return;
         }
       }
@@ -108,105 +104,6 @@ export default {
 </script>
 
 <style scoped>
-ul.team {
-  border-radius: 12px;
-  background-color: #ddd;
-  list-style: none;
-  padding: 12px;
-}
-
-ul.team li {
-  background-color: #eee;
-  border-radius: 8px;
-  margin-bottom: 8px;
-  padding: 4px 12px;
-}
-
-ul.team li:last-of-type {
-  margin: 0;
-}
-
-.flex-row {
-  display: flex;
-  margin-bottom: 12px;
-  position: relative;
-}
-
-.flex-row:last-of-type {
-  margin-bottom: 0;
-}
-
-.flex-row > * {
-  display: flex;
-  flex-direction: column;
-  margin-right: 12px;
-  position: relative;
-}
-
-.flex-row > *:last-of-type {
-  margin-right: 0;
-}
-
-.flex-1 {
-  flex: 1 0 auto;
-}
-
-.flex-2 {
-  flex: 2 0 auto;
-}
-
-.flex-3 {
-  flex: 3 0 auto;
-}
-
-.flex-4 {
-  flex: 4 0 auto;
-}
-
-textarea,
-input[type="text"],
-input[type="number"],
-input[type="button"] {
-  border: 2px solid #ddd;
-  border-radius: 6px;
-  display: block;
-  padding: 4px 8px;
-  font-size: 15px;
-  transition: border-color .1s, background-color .1s, color .1s;
-}
-
-textarea:hover,
-input[type="text"]:hover,
-input[type="number"]:hover,
-input[type="button"]:hover {
-  border-color: #bbb;
-}
-
-textarea:focus,
-input[type="text"]:focus,
-input[type="number"]:focus,
-input[type="button"]:focus {
-  border-color: #42b983;
-  outline-width: 0;
-  outline: none;
-  transition: border-color 0s, background-color 0s, color 0s;
-}
-
-input[type="button"] {
-  border-color: #eee;
-  cursor: pointer;
-}
-
-input[type="button"]:hover {
-  border-color: #42b983;
-  transition: border-color 0s, background-color 0s, color 0s;
-}
-
-input[type="button"]:active {
-  background-color: #42b983;
-  color: #fff;
-}
-
 .livePlayer {
   background-color: #42b983;
   color: #fff;
