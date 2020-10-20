@@ -1,8 +1,6 @@
 <template>
   <div id="nav">
     <router-link to="/">Home</router-link>
-    <router-link to="/about">About</router-link>
-    <router-link to="/iframe-test">Iframe thing</router-link>
     <router-link to="/team-generator">Team generator</router-link>
     <router-link to="/adv-team-generator">Advanced team generator</router-link>
   </div>
@@ -139,5 +137,14 @@ input[type="button"]:hover {
 input[type="button"]:active {
   background-color: #42b983;
   color: #fff;
+}
+
+input[type="button"].warning:hover,
+input[type="button"].warning:focus {
+  border-color: #f7390e;
+}
+
+input[type="button"].warning:active {
+  background-color: #f7390e;
 }
 </style>
