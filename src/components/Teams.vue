@@ -2,17 +2,31 @@
   <div v-for="(team, i) in teams" :key="`team-${i}`">
     <h3>Team {{ i + 1 }}</h3>
     <ul :class="['team', { 'warning': team.length <= 1 }]">
-      <li v-for="(player, i) in team" :key="`player-${i}`">{{ player }}</li>
+      <li v-for="(player, i) in team" :key="`player-${i}`">
+        <template v-if="advanced">
+          {{ player.name.val }} <Badge :value="`${ player.handicap.val }`" color="dark" dark />
+        </template>
+        <template v-else>
+          {{ player }}
+        </template>
+      </li>
     </ul>
   </div>
 </template>
 
 <script>
+import Badge from '@/components/Badge';
+
 export default {
+  components: { Badge },
   props: {
     teams: {
       type: Array,
       default: () => ([])
+    },
+    advanced: {
+      type: Boolean,
+      default: false
     }
   }
 };

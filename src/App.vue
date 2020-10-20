@@ -104,7 +104,6 @@ input[type="button"] {
   border-radius: 6px;
   padding: 4px 8px;
   font-size: 15px;
-  transition: border-color .1s, background-color .1s, color .1s;
 }
 
 textarea:hover,
@@ -121,7 +120,6 @@ input[type="button"]:focus {
   border-color: #42b983;
   outline-width: 0;
   outline: none;
-  transition: border-color 0s, background-color 0s, color 0s;
 }
 
 input[type="button"] {
@@ -131,7 +129,6 @@ input[type="button"] {
 
 input[type="button"]:hover {
   border-color: #42b983;
-  transition: border-color 0s, background-color 0s, color 0s;
 }
 
 input[type="button"]:active {
@@ -146,5 +143,15 @@ input[type="button"].warning:focus {
 
 input[type="button"].warning:active {
   background-color: #f7390e;
+}
+
+* {
+  transition: border-color .1s, background-color .1s, color .1s;
+}
+
+*:hover,
+*:focus,
+*:active {
+  transition: border-color 0s, background-color 0s, color 0s;
 }
 </style>

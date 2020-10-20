@@ -3,8 +3,8 @@
   <div class="flex-row">
     <div class="flex-1">
       <div>
-        <input v-model="balanced" type="checkbox" value="Balanced" label="Balanced" />
-        <label>Balanced</label>
+        <input v-model="balanced" type="checkbox" />
+        <label>Skill Balanced</label>
       </div>
     </div>
     <div style="flex: 0 0 100px">
@@ -18,40 +18,93 @@
   <div class="flex-row">
     <div class="flex-1">
       <label>Name</label>
-      <input v-model="player.name" type="text" />
+      <input v-model="player.name.val" type="text" />
     </div>
     <div style="flex: 0 0 100px">
       <label>Handicap</label>
-      <input v-model="player.handicap" type="number" />
+      <input v-model="player.handicap.val" type="number" />
     </div>
     <div style="flex: 0 0 150px; justify-content: flex-end">
       <input type="button" @click="addPlayer" value="Add player" />
     </div>
   </div>
-  <div v-for="(player, i) in players" :key="`player-${i}`" class="flex-row player">
-    <div class="flex-1">
-      {{ player.name }} ({{ player.handicap }})
-    </div>
-    <input type="button" @click="removePlayer(i)" value="-" />
+  <div class="flex-row stats-tape">
+    <div>Balanced maximum per team: {{ perTeamMaximum }}</div>
   </div>
-  <Teams :teams="teams" />
+  <div class="flex-row collapser">
+    <div class="flex-1">
+      <h2>Player List <Badge :value="`${players.length}`" color="dark" dark /></h2>
+    </div>
+    <div style="flex: 0 0 150px; justify-content: center">
+      <input type="button" @click="showPlayerList = !showPlayerList" :value="showPlayerList ? 'Hide' : 'Show'" />
+    </div>
+  </div>
+  <div v-if="showPlayerList">
+    <div
+      v-for="(player, i) in players"
+      :key="`player-${i}`"
+      class="flex-row player"
+    >
+      <div class="flex-1">
+        <div class="flex-row">
+          <input
+            v-if="player.name.editing"
+            style="flex: 0 0 47%"
+            type="text"
+            v-model="player.name.val"
+            @blur="player.name.editing = false"
+          />
+          <div
+            v-else
+            style="flex: 0 0 47%"
+          >
+            {{ player.name.val }}
+          </div>
+          <input
+            v-if="player.handicap.editing"
+            style="flex: 0 0 47%"
+            type="text"
+            v-model="player.handicap.val"
+            @blur="player.handicap.editing = false"
+          />
+          <div
+            style="flex: 0 0 47%"
+          >
+            {{ player.handicap.val }}
+          </div>
+        </div>
+      </div>
+      <input type="button" value="Edit" />
+      <input class="warning" type="button" @click="removePlayer(i)" value="Remove" />
+    </div>
+  </div>
+  <h2 v-if="teams.length > 0">Output</h2>
+  <Teams advanced :teams="teams" />
 </template>
 
 <script>
 import Teams from '@/components/Teams';
+import Badge from '@/components/Badge';
 
 export default {
-  components: { Teams },
+  components: { Teams, Badge },
   data() {
     return {
       player: {
-        name: null,
-        handicap: 0
+        name: {
+          val: null,
+          editing: false
+        },
+        handicap: {
+          val: 0,
+          editing: false
+        }
       },
       players: [],
       size: 4,
       teams: [],
-      balanced: false
+      balanced: false,
+      showPlayerList: true
     };
   },
   computed: {
@@ -87,9 +140,15 @@ export default {
   },
   methods: {
     addPlayer() {
-      this.players.push({
-        ...this.player
-      });
+      if(this.player.name.val && this.player.handicap.val >= -50 && this.player.handicap.val <= 50) {
+        this.players.push({
+          ...this.player
+        });
+      } else if (!this.player.name.val) {
+        alert('Please provide a name');
+      } else if (this.player.handicap.val < -50 || this.player.handicap.val > 50) {
+        alert('Handicap should be between 50 and -50');
+      }
     },
     removePlayer(index) {
       this.players.splice(index, 1);
@@ -103,7 +162,7 @@ export default {
 
       this.players.forEach(player => {
         const index = Math.floor(Math.random() * this.noOfTeams);
-        this.addPlayerToTeam(index, player.name);
+        this.addPlayerToTeam(index, player);
       });
     },
     addPlayerToTeam(index, player) {
@@ -115,7 +174,7 @@ export default {
       }
 
       this.addPlayerToTeam(Math.floor(Math.random() * this.noOfTeams), player);
-    }
+    },
   }
 };
 </script>
@@ -125,7 +184,7 @@ export default {
   border-radius: 6px;
   align-items: center;
   margin-bottom: 6px;
-  padding: 6px 14px;
+  padding: 6px 6px 6px 14px;
   transition: background-color 0.1s;
 }
 
@@ -136,5 +195,15 @@ export default {
 .player:hover {
   background-color: #fafafa;
   transition: background-color 0s;
+}
+
+.player .editable {
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 5px 7px;
+}
+
+.player .editable:hover {
+  background-color: #eee;
 }
 </style>
