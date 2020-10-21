@@ -35,8 +35,11 @@
     <div class="flex-1">
       <h2>Player List <Badge :value="`${players.length}`" color="dark" dark /></h2>
     </div>
-    <div style="flex: 0 0 150px; justify-content: center">
+    <div style="flex: 0 0 100px; justify-content: center">
       <input type="button" @click="showPlayerList = !showPlayerList" :value="showPlayerList ? 'Hide' : 'Show'" />
+    </div>
+    <div style="flex: 0 0 100px; justify-content: center">
+      <ConfirmButton text="Clear" :classes="['warning']" @confirmed="clearPlayers" />
     </div>
   </div>
   <div v-if="showPlayerList">
@@ -59,16 +62,19 @@
       <input class="warning" type="button" @click="removePlayer(i)" value="Remove" />
     </div>
   </div>
-  <h2 v-if="teams.length > 0">Output</h2>
+  <h2 v-if="teams.length > 0">
+    <template v-if="!generated">Most Recent </template>Output
+  </h2>
   <Teams advanced :teams="teams" />
 </template>
 
 <script>
 import Teams from '@/components/Teams';
 import Badge from '@/components/Badge';
+import ConfirmButton from '@/components/ConfirmButton';
 
 export default {
-  components: { Teams, Badge },
+  components: { Teams, Badge, ConfirmButton },
   data() {
     return {
       player: {
@@ -79,7 +85,8 @@ export default {
       size: 4,
       teams: [],
       balanced: false,
-      showPlayerList: true
+      showPlayerList: true,
+      generated: false
     };
   },
   computed: {
@@ -103,14 +110,36 @@ export default {
         localStorage.setItem("advPlayers", JSON.stringify(val));
       },
       deep: true
+    },
+    teams: {
+      handler(val) {
+        localStorage.setItem("advLastOutput", JSON.stringify(val));
+      },
+      deep: true
+    },
+    showPlayerList(val)
+    {
+      localStorage.setItem("advShowPlayers", JSON.stringify(val));
     }
   },
   mounted() {
     const savedPlayers = localStorage.getItem("advPlayers");
+    const lastOutput = localStorage.getItem("advLastOutput");
+    const showPlayers = localStorage.getItem("advShowPlayers");
 
     if(savedPlayers && savedPlayers !== "null")
     {
       this.players = JSON.parse(savedPlayers);
+    }
+
+    if (lastOutput)
+    {
+      this.teams = JSON.parse(lastOutput);
+    }
+    
+    if (showPlayers)
+    {
+      this.showPlayerList = JSON.parse(showPlayers);
     }
   },
   methods: {
@@ -128,7 +157,12 @@ export default {
     removePlayer(index) {
       this.players.splice(index, 1);
     },
+    clearPlayers() {
+      this.players = [];
+    },
     generateTeams() {
+      if (!this.generated) this.generated = true;
+
       this.teams = [];
 
       for (let i = 0; i < this.noOfTeams; i++) {
