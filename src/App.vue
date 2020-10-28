@@ -3,6 +3,7 @@
     <router-link to="/">Home</router-link>
     <router-link to="/team-generator">Team generator</router-link>
     <router-link to="/adv-team-generator">Advanced team generator</router-link>
+    <router-link to="/indecision-fixer">Indecision Fixer</router-link>
   </div>
   <div id="main">
     <router-view />
@@ -80,6 +81,13 @@ body {
   margin-right: 0;
 }
 
+.flex-1,
+.flex-2,
+.flex-3,
+.flex-4 {
+  justify-content: center;
+}
+
 .flex-1 {
   flex: 1 0 auto;
 }
@@ -94,6 +102,11 @@ body {
 
 .flex-4 {
   flex: 4 0 auto;
+}
+
+.flex-small {
+  flex: 0 0 150px;
+  justify-content: flex-end;
 }
 
 textarea,
@@ -146,7 +159,7 @@ input[type="button"].warning:active {
 }
 
 * {
-  transition: border-color .1s, background-color .1s, color .1s;
+  transition: border-color .14s, background-color .14s, color .14s;
 }
 
 *:hover,

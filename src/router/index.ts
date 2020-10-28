@@ -20,8 +20,16 @@ const routes: Array<RouteRecordRaw> = [
     name: "Advanced Team generator",
     component: () =>
       import(
-        /* webpackChunkName: "team-generator" */ "../views/AdvancedTeamGenerator.vue"
+        /* webpackChunkName: "adv-team-generator" */ "../views/AdvancedTeamGenerator.vue"
       )
+  },
+  {
+    path: "/indecision-fixer",
+    name: "Indecision Fixer",
+    component: () =>
+    import(
+      /* webpackChunkName: "indecision-fixer" */ "../views/IndecisionFixer.vue"
+    )
   }
 ];
 
