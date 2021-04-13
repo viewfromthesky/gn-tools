@@ -4,6 +4,7 @@
     <router-link to="/team-generator">Team generator</router-link>
     <router-link to="/adv-team-generator">Advanced team generator</router-link>
     <router-link to="/indecision-fixer">Indecision Fixer</router-link>
+	<router-link to="/insights">Insights</router-link>
   </div>
   <div id="main">
     <router-view />

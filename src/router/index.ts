@@ -30,7 +30,15 @@ const routes: Array<RouteRecordRaw> = [
     import(
       /* webpackChunkName: "indecision-fixer" */ "../views/IndecisionFixer.vue"
     )
-  }
+  },
+  {
+		path: "/insights",
+		name: "Insights",
+		component: () =>
+			import(
+				/* webpackChunkName: "insights" */ "../views/Insights.vue"
+			)
+	}
 ];
 
 const router = createRouter({
