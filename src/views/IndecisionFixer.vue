@@ -3,7 +3,11 @@
   <div class="flex-row">
     <div class="flex-1">
       <label>Add a thing to decide on</label>
-      <input type="text" v-model="currentThing" @keydown.enter="addThingToThings" />
+      <input
+        type="text"
+        v-model="currentThing"
+        @keydown.enter="addThingToThings"
+      />
     </div>
     <div style="flex: 0 0 150px; justify-content: flex-end">
       <input type="button" value="Add" @click="addThingToThings" />
@@ -14,7 +18,11 @@
       <input type="button" value="Fix my indecision" @click="fixIndecision" />
     </div>
     <div class="flex-small">
-      <ConfirmButton text="Clear things" :classes="['warning']" @confirmed="clearAll" />
+      <ConfirmButton
+        text="Clear things"
+        :classes="['warning']"
+        @confirmed="clearAll"
+      />
     </div>
   </div>
   <div class="flex-row" v-if="output">
@@ -23,7 +31,10 @@
     </div>
   </div>
   <div>
-    <h2>Things to decide on <Badge :value="`${things.length}`" color="dark" dark /></h2>
+    <h2>
+      Things to decide on
+      <Badge :value="`${things.length}`" color="dark" dark />
+    </h2>
   </div>
   <div class="flex-row">
     <ul class="flex-1 thing" ref="things">
@@ -63,18 +74,16 @@ export default {
       deep: true
     }
   },
-  mounted()
-  {
+  mounted() {
     const things = localStorage.getItem("if_things");
 
-    if(things && things !== "null")
-    {
+    if (things && things !== "null") {
       this.things = JSON.parse(things);
     }
   },
   methods: {
     addThingToThings() {
-      if(!this.things.includes(this.currentThing)) {
+      if (!this.things.includes(this.currentThing)) {
         this.things.push(this.currentThing);
         this.currentThing = null;
       }
@@ -83,21 +92,21 @@ export default {
       this.output = null;
       const iterations = 50;
       const maximum = this.things.length;
-      const listOfThings = this.$refs.things.querySelectorAll('li');
+      const listOfThings = this.$refs.things.querySelectorAll("li");
       let iterationCount = 0;
 
       const timer = setInterval(() => {
         console.log(`iteration ${iterationCount}`);
-        if(this.answer !== null) {
-          listOfThings[this.answer].classList.remove('choosing');
+        if (this.answer !== null) {
+          listOfThings[this.answer].classList.remove("choosing");
         }
 
         const selection = Math.floor(Math.random() * maximum);
         this.answer = selection;
-        listOfThings[selection].classList.add('choosing');
+        listOfThings[selection].classList.add("choosing");
 
         iterationCount++;
-        if(iterationCount === iterations) {
+        if (iterationCount === iterations) {
           clearInterval(timer);
           this.output = this.things[this.answer];
         }
@@ -110,7 +119,7 @@ export default {
       this.things = [];
     }
   }
-}
+};
 </script>
 
 <style scoped>

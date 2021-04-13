@@ -1,5 +1,8 @@
 <template>
-  <div class="badge" :style="{ backgroundColor: computedColor, color: dark ? '#fff' : '' }">
+  <div
+    class="badge"
+    :style="{ backgroundColor: computedColor, color: dark ? '#fff' : '' }"
+  >
     {{ value }}
   </div>
 </template>
@@ -13,7 +16,7 @@ export default {
     },
     color: {
       type: String,
-      default: 'calm'
+      default: "calm"
     },
     dark: {
       type: Boolean,
@@ -22,16 +25,14 @@ export default {
   },
   computed: {
     computedColor: {
-      get()
-      {
-        switch(this.color)
-        {
-          case 'calm':
-            return '#6befce';
-          case 'warning':
-            return '#f7390e';
-          case 'dark':
-            return '#2c3e50';
+      get() {
+        switch (this.color) {
+          case "calm":
+            return "#6befce";
+          case "warning":
+            return "#f7390e";
+          case "dark":
+            return "#2c3e50";
           default:
             return this.color;
         }
@@ -45,6 +46,6 @@ export default {
 div {
   border-radius: 1em;
   display: inline-block;
-  padding: .2em .6em .1em .6em;
+  padding: 0.2em 0.6em 0.1em 0.6em;
 }
 </style>

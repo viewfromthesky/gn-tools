@@ -33,13 +33,23 @@
   </div>
   <div class="flex-row collapser">
     <div class="flex-1">
-      <h2>Player List <Badge :value="`${players.length}`" color="dark" dark /></h2>
+      <h2>
+        Player List <Badge :value="`${players.length}`" color="dark" dark />
+      </h2>
     </div>
     <div style="flex: 0 0 100px; justify-content: center">
-      <input type="button" @click="showPlayerList = !showPlayerList" :value="showPlayerList ? 'Hide' : 'Show'" />
+      <input
+        type="button"
+        @click="showPlayerList = !showPlayerList"
+        :value="showPlayerList ? 'Hide' : 'Show'"
+      />
     </div>
     <div style="flex: 0 0 100px; justify-content: center">
-      <ConfirmButton text="Clear" :classes="['warning']" @confirmed="clearPlayers" />
+      <ConfirmButton
+        text="Clear"
+        :classes="['warning']"
+        @confirmed="clearPlayers"
+      />
     </div>
   </div>
   <div v-if="showPlayerList">
@@ -59,7 +69,12 @@
         </div>
       </div>
       <input type="button" value="Edit" />
-      <input class="warning" type="button" @click="removePlayer(i)" value="Remove" />
+      <input
+        class="warning"
+        type="button"
+        @click="removePlayer(i)"
+        value="Remove"
+      />
     </div>
   </div>
   <h2 v-if="teams.length > 0">
@@ -69,9 +84,9 @@
 </template>
 
 <script>
-import Teams from '@/components/Teams';
-import Badge from '@/components/Badge';
-import ConfirmButton from '@/components/ConfirmButton';
+import Teams from "@/components/Teams";
+import Badge from "@/components/Badge";
+import ConfirmButton from "@/components/ConfirmButton";
 
 export default {
   components: { Teams, Badge, ConfirmButton },
@@ -99,7 +114,7 @@ export default {
     perTeamMaximum() {
       const limit = Math.ceil(this.players.length / this.noOfTeams);
 
-      if(Number.isNaN(limit)) return 0;
+      if (Number.isNaN(limit)) return 0;
 
       return limit;
     }
@@ -117,8 +132,7 @@ export default {
       },
       deep: true
     },
-    showPlayerList(val)
-    {
+    showPlayerList(val) {
       localStorage.setItem("advShowPlayers", JSON.stringify(val));
     }
   },
@@ -127,31 +141,32 @@ export default {
     const lastOutput = localStorage.getItem("advLastOutput");
     const showPlayers = localStorage.getItem("advShowPlayers");
 
-    if(savedPlayers && savedPlayers !== "null")
-    {
+    if (savedPlayers && savedPlayers !== "null") {
       this.players = JSON.parse(savedPlayers);
     }
 
-    if (lastOutput)
-    {
+    if (lastOutput) {
       this.teams = JSON.parse(lastOutput);
     }
-    
-    if (showPlayers)
-    {
+
+    if (showPlayers) {
       this.showPlayerList = JSON.parse(showPlayers);
     }
   },
   methods: {
     addPlayer() {
-      if(this.player.name && this.player.handicap >= -50 && this.player.handicap <= 50) {
+      if (
+        this.player.name &&
+        this.player.handicap >= -50 &&
+        this.player.handicap <= 50
+      ) {
         this.players.push({
           ...this.player
         });
       } else if (!this.player.name) {
-        alert('Please provide a name');
+        alert("Please provide a name");
       } else if (this.player.handicap < -50 || this.player.handicap > 50) {
-        alert('Handicap should be between 50 and -50');
+        alert("Handicap should be between 50 and -50");
       }
     },
     removePlayer(index) {
@@ -183,7 +198,7 @@ export default {
       }
 
       this.addPlayerToTeam(Math.floor(Math.random() * this.noOfTeams), player);
-    },
+    }
   }
 };
 </script>

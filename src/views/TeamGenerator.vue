@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import Teams from '@/components/Teams';
+import Teams from "@/components/Teams";
 
 export default {
   components: { Teams },
@@ -50,8 +50,7 @@ export default {
   computed: {
     playersArray() {
       if (this.players === null) return [];
-      return this.players.split(/,\s*/)
-        .filter(item => item && item !== "\n");
+      return this.players.split(/,\s*/).filter(item => item && item !== "\n");
     },
     teamSize() {
       return Number(this.size) || 4;
@@ -62,7 +61,7 @@ export default {
     perTeamMaximum() {
       const limit = Math.ceil(this.playersArray.length / this.noOfTeams);
 
-      if(Number.isNaN(limit)) return 0;
+      if (Number.isNaN(limit)) return 0;
 
       return limit;
     }
@@ -72,8 +71,7 @@ export default {
       localStorage.setItem("players", val);
     }
   },
-  mounted()
-  {
+  mounted() {
     this.players = localStorage.getItem("players");
   },
   methods: {

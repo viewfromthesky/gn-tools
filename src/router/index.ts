@@ -27,26 +27,22 @@ const routes: Array<RouteRecordRaw> = [
     path: "/indecision-fixer",
     name: "Indecision Fixer",
     component: () =>
-    import(
-      /* webpackChunkName: "indecision-fixer" */ "../views/IndecisionFixer.vue"
-    )
+      import(
+        /* webpackChunkName: "indecision-fixer" */ "../views/IndecisionFixer.vue"
+      )
   },
   {
-		path: "/insights",
-		name: "Insights",
-		component: () =>
-			import(
-				/* webpackChunkName: "insights" */ "../views/Insights.vue"
-			)
-	},
-	{
-		path: "/edit/games",
-		name: "Games Editor",
-		component: () =>
-			import(
-				/* webpackChunkName: "games-editor" */ "../views/GamesEditor.vue"
-			)
-	}
+    path: "/insights",
+    name: "Insights",
+    component: () =>
+      import(/* webpackChunkName: "insights" */ "../views/Insights.vue")
+  },
+  {
+    path: "/edit/games",
+    name: "Games Editor",
+    component: () =>
+      import(/* webpackChunkName: "games-editor" */ "../views/GamesEditor.vue")
+  }
 ];
 
 const router = createRouter({

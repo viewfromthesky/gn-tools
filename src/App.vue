@@ -4,8 +4,8 @@
     <router-link to="/team-generator">Team generator</router-link>
     <router-link to="/adv-team-generator">Advanced team generator</router-link>
     <router-link to="/indecision-fixer">Indecision Fixer</router-link>
-		<router-link to="/edit/games">Games Editor</router-link>
-	<router-link to="/insights">Insights</router-link>
+    <router-link to="/edit/games">Games Editor</router-link>
+    <router-link to="/insights">Insights</router-link>
   </div>
   <div id="main">
     <router-view />
@@ -16,11 +16,11 @@
 import { useDefaultStore } from "@/store";
 
 export default {
-	setup() {
-		const defaultStore = useDefaultStore();
+  setup() {
+    const defaultStore = useDefaultStore();
 
-		defaultStore.initialise();
-	}
+    defaultStore.initialise();
+  }
 };
 </script>
 
@@ -75,7 +75,7 @@ body {
 }
 
 .flex-row {
-	align-items: flex-start;
+  align-items: flex-start;
   display: flex;
   margin-bottom: 12px;
   position: relative;
@@ -174,7 +174,7 @@ input[type="button"].warning:active {
 }
 
 * {
-  transition: border-color .14s, background-color .14s, color .14s;
+  transition: border-color 0.14s, background-color 0.14s, color 0.14s;
 }
 
 *:hover,
