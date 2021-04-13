@@ -53,7 +53,6 @@
 </template>
 
 <script>
-import { defineComponent } from "vue";
 import { v4 } from "uuid";
 import Input from "@/components/ui/Input";
 import { usePlayerStore } from "@/store/players";

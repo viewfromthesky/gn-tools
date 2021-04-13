@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "dotenv": "^8.2.0",
+    "luxon": "^1.26.0",
     "pinia": "^2.0.0-alpha.13",
     "uuid": "^8.3.2",
     "vue": "^3.0.11",

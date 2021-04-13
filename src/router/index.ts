@@ -38,6 +38,14 @@ const routes: Array<RouteRecordRaw> = [
 			import(
 				/* webpackChunkName: "insights" */ "../views/Insights.vue"
 			)
+	},
+	{
+		path: "/edit/games",
+		name: "Games Editor",
+		component: () =>
+			import(
+				/* webpackChunkName: "games-editor" */ "../views/GamesEditor.vue"
+			)
 	}
 ];
 
