@@ -45,6 +45,6 @@ export default {
 div {
   border-radius: 1em;
   display: inline-block;
-  padding: .1em .6em;
+  padding: .2em .6em .1em .6em;
 }
 </style>

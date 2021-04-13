@@ -1,10 +1,17 @@
 import { defineStore } from "pinia";
+import { useGameStore } from "@/store/games";
+import { usePlayerStore } from "@/store/players";
 
-export const useMainStore = defineStore({
-	id: "counter",
-	state() {
-		return {
-			count: 0
-		};
+export const useDefaultStore = defineStore({
+	id: "index",
+	actions: {
+		initialise() {
+			// Initialise all stores on load
+			const gameStore = useGameStore();
+			const playerStore = usePlayerStore();
+
+			gameStore.initialise();
+			playerStore.initialise();
+		}
 	}
 });

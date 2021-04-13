@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Insights</h1>
-		<div class="flex-row" style="align-items: flex-start">
+		<div class="flex-row">
 			<div class="flex-2">
 				<ul>
 					<li
@@ -9,9 +9,7 @@
 						:key="player.id"
 					>
 						{{ player.name }}
-						<button @click="removePlayer(player.id)">
-							Remove
-						</button>
+						<input type="button" @click="removePlayer(player.id)" value="Remove" />
 					</li>
 				</ul>
 				<ul>
@@ -20,9 +18,7 @@
 						:key="game.id"
 					>
 						{{ game.name }}
-						<button @click="removeGame(game.id)">
-							Remove
-						</button>
+						<input type="button" @click="removeGame(game.id)" value="Remove" />
 					</li>
 				</ul>
 			</div>

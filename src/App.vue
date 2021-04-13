@@ -13,8 +13,15 @@
 </template>
 
 <script typescript>
-// need to initialise the store from here
-// use localStorage to begin with
+import { useDefaultStore } from "@/store";
+
+export default {
+	setup() {
+		const defaultStore = useDefaultStore();
+
+		defaultStore.initialise();
+	}
+};
 </script>
 
 <style>
@@ -68,6 +75,7 @@ body {
 }
 
 .flex-row {
+	align-items: flex-start;
   display: flex;
   margin-bottom: 12px;
   position: relative;

@@ -10,7 +10,8 @@ export interface PlayerState {
 // The Game and Player types are the same now, but they could change in future
 export interface Game {
 	id: string,
-	name: string
+	name: string,
+	playersPerTeam: number
 };
 
 export interface GameState {
