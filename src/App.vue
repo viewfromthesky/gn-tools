@@ -129,19 +129,19 @@ body {
 }
 
 .col-3 {
-	flex: 0 0 25%;
+  flex: 0 0 25%;
 }
 
 .col-4 {
-	flex: 0 0 33.33%;
+  flex: 0 0 33.33%;
 }
 
 .col-6 {
-	flex: 0 0 50%;
+  flex: 0 0 50%;
 }
 
 .col-8 {
-	flex: 0 0 66.67%;
+  flex: 0 0 66.67%;
 }
 
 textarea,
@@ -194,7 +194,7 @@ input[type="button"].warning:active {
 }
 
 input[type="button"]:disabled {
-	pointer-events: none;
+  pointer-events: none;
 }
 
 * {

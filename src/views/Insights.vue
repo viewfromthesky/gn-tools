@@ -3,14 +3,11 @@
     <h1>Insights</h1>
     <div class="flex-row">
       <div class="col-8">
-				<h2>Selection</h2>
-				<DataSelector
-					dataSource="games"
-					v-model="selectedGameId"
-				/>
-				<template v-if="selectedGameId">
-					Selected: {{ selectedGame.name }}
-				</template>
+        <h2>Selection</h2>
+        <DataSelector dataSource="games" v-model="selectedGameId" />
+        <template v-if="selectedGameId">
+          Selected: {{ selectedGame.name }}
+        </template>
       </div>
       <div class="col-4">
         <h2>Editor</h2>
@@ -57,7 +54,7 @@ export default {
     return {
       newPlayer: "",
       newGame: "",
-			selectedGameId: null,
+      selectedGameId: null,
       newPoll: {
         date: "",
         options: [],
@@ -76,17 +73,17 @@ export default {
         return this.gameStore.all;
       }
     },
-		selectedGame: {
-			get() {
-				return this.gameStore.byId(this.selectedGameId);
-			}
-		}
+    selectedGame: {
+      get() {
+        return this.gameStore.byId(this.selectedGameId);
+      }
+    }
   },
-	watch: {
-		selectedGame(val) {
-			console.log("recieved", val);
-		}
-	},
+  watch: {
+    selectedGame(val) {
+      console.log("recieved", val);
+    }
+  },
   methods: {
     addNewPlayer() {
       const success = this.playerStore.addNewPlayer({

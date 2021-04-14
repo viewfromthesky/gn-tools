@@ -24,11 +24,11 @@
                 </span>
               </span>
               <input
-								type="button"
-								@click="setEditing(game.id)"
-								:value="(editing && game.id === editing) ? 'Editing' : 'Edit'"
-								:disabled="editing && game.id === editing"
-							/>
+                type="button"
+                @click="setEditing(game.id)"
+                :value="editing && game.id === editing ? 'Editing' : 'Edit'"
+                :disabled="editing && game.id === editing"
+              />
               <ConfirmButton
                 text="Remove"
                 @confirmed="removeGame(game.id)"
