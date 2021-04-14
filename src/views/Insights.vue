@@ -2,25 +2,17 @@
   <div>
     <h1>Insights</h1>
     <div class="flex-row">
-      <div class="flex-2">
-        <ul>
-          <li v-for="player in players" :key="player.id">
-            {{ player.name }}
-            <input
-              type="button"
-              @click="removePlayer(player.id)"
-              value="Remove"
-            />
-          </li>
-        </ul>
-        <ul>
-          <li v-for="game in games" :key="game.id">
-            {{ game.name }}
-            <input type="button" @click="removeGame(game.id)" value="Remove" />
-          </li>
-        </ul>
+      <div class="col-8">
+				<h2>Selection</h2>
+				<DataSelector
+					dataSource="games"
+					v-model="selectedGameId"
+				/>
+				<template v-if="selectedGameId">
+					Selected: {{ selectedGame.name }}
+				</template>
       </div>
-      <div class="flex-1">
+      <div class="col-4">
         <h2>Editor</h2>
         <div>
           <h3>Add a new player</h3>
@@ -48,9 +40,10 @@ import { v4 } from "uuid";
 import Input from "@/components/ui/Input";
 import { usePlayerStore } from "@/store/players";
 import { useGameStore } from "@/store/games";
+import DataSelector from "@/components/ui/DataSelector";
 
 export default {
-  components: { Input },
+  components: { Input, DataSelector },
   setup() {
     const playerStore = usePlayerStore();
     const gameStore = useGameStore();
@@ -64,6 +57,7 @@ export default {
     return {
       newPlayer: "",
       newGame: "",
+			selectedGameId: null,
       newPoll: {
         date: "",
         options: [],
@@ -81,8 +75,18 @@ export default {
       get() {
         return this.gameStore.all;
       }
-    }
+    },
+		selectedGame: {
+			get() {
+				return this.gameStore.byId(this.selectedGameId);
+			}
+		}
   },
+	watch: {
+		selectedGame(val) {
+			console.log("recieved", val);
+		}
+	},
   methods: {
     addNewPlayer() {
       const success = this.playerStore.addNewPlayer({

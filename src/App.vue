@@ -128,6 +128,22 @@ body {
   justify-content: flex-end;
 }
 
+.col-3 {
+	flex: 0 0 25%;
+}
+
+.col-4 {
+	flex: 0 0 33.33%;
+}
+
+.col-6 {
+	flex: 0 0 50%;
+}
+
+.col-8 {
+	flex: 0 0 66.67%;
+}
+
 textarea,
 input[type="text"],
 input[type="number"],

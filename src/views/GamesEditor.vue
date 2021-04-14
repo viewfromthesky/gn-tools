@@ -2,7 +2,7 @@
   <div>
     <h1>Games Editor</h1>
     <div class="flex-row">
-      <div class="flex-1">
+      <div class="col-6">
         <h2>Add a game</h2>
         <Input v-model="newGameName" labelText="Game name" />
         <Input
@@ -12,7 +12,7 @@
         />
         <input type="button" @click="addGame" value="Add" />
       </div>
-      <div class="flex-1">
+      <div class="col-6">
         <h2>Edit games</h2>
         <ul class="column">
           <li v-for="game in allGames" :key="game.id">
@@ -113,8 +113,6 @@ export default {
     },
     setEditing(id) {
       this.editing = id;
-
-      console.log("test");
 
       if (this.gameBeingEdited) {
         this.editedGameName = this.gameBeingEdited.name;
