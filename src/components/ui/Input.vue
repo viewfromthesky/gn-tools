@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-row">
+  <div class="flex-row" style="margin-bottom: 12px;">
     <div class="flex-1">
       <label>{{ labelText }}</label>
       <input

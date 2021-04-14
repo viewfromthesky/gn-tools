@@ -11,7 +11,7 @@ export interface PlayerState {
 export interface Game {
   id: string;
   name: string;
-  playersPerTeam: number;
+  playersPerMatch: number;
 }
 
 export interface GameState {

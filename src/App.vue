@@ -81,6 +81,10 @@ body {
   position: relative;
 }
 
+.flex-row.center {
+  align-items: center;
+}
+
 .flex-row:last-of-type {
   margin-bottom: 0;
 }
@@ -173,6 +177,10 @@ input[type="button"].warning:active {
   background-color: #f7390e;
 }
 
+input[type="button"]:disabled {
+	pointer-events: none;
+}
+
 * {
   transition: border-color 0.14s, background-color 0.14s, color 0.14s;
 }
@@ -181,5 +189,38 @@ input[type="button"].warning:active {
 *:focus,
 *:active {
   transition: border-color 0s, background-color 0s, color 0s;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul.column > li {
+  flex-direction: column;
+}
+
+li {
+  border-radius: 9px;
+  display: flex;
+  justify-content: stretch;
+  margin-bottom: 4px;
+  padding: 9px;
+}
+
+li:last-child {
+  margin-bottom: 0;
+}
+
+li > * {
+  width: 100%;
+}
+
+li:nth-child(even) {
+  background-color: #fafafa;
+}
+
+li:hover {
+  background-color: #dddddd;
 }
 </style>

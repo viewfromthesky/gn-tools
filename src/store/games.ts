@@ -29,6 +29,26 @@ export const useGameStore = defineStore({
       // If the length of the array increased, send true. Otherwise, send false
       return this.games.length > count;
     },
+    editGame(game: Game) {
+      const existingIndex = this.games.findIndex(
+        (listedGame: Game) => listedGame.id === game.id
+      );
+
+      if (existingIndex >= 0) {
+        // Create a copy of the existing game
+        const existingGame = { ...this.games[existingIndex] };
+        const newGame = {
+          ...existingGame,
+          ...game
+        };
+
+        this.games[existingIndex] = newGame;
+
+        return true;
+      }
+
+      return false;
+    },
     removeGameById(id: string) {
       // Get the number of items in the games array before removing
       const count = this.games.length;
